@@ -873,7 +873,7 @@ aws-cdk-lib = "^2.99.0"
 
 [package.source]
 type = "git"
-url = "https://github.com/Real-Life-Infrastructure-as-Code/cdk-constructs.git"
+url = "https://github.com/Real-Life-IaC/cdk-constructs.git"
 reference = "0.7.1"
 resolved_reference = "3604042f70e5fabe6bbd4a051321715696bd3682"
 
