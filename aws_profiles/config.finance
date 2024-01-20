@@ -1,0 +1,12 @@
+[default]
+sso_start_url=https://sionek.awsapps.com/start
+sso_region=us-east-1
+region = us-east-1
+
+
+[profile management_billing]
+sso_account_id = 267631547124
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = Billing
+region = us-east-1

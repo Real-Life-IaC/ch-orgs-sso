@@ -1,0 +1,36 @@
+[default]
+sso_start_url=https://sionek.awsapps.com/start
+sso_region=us-east-1
+region = us-east-1
+
+
+[profile production]
+sso_account_id = 730335548799
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = ReadOnly
+region = us-east-1
+
+
+[profile sandbox]
+sso_account_id = 637423243766
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = ReadOnly
+region = us-east-1
+
+
+[profile sandbox_poweruser]
+sso_account_id = 637423243766
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = PowerUser
+region = us-east-1
+
+
+[profile staging]
+sso_account_id = 905418189086
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = ReadOnly
+region = us-east-1

@@ -10,7 +10,7 @@ app = cdk.App()
 
 SsoStack(
     scope=app,
-    id=f"Platform-{AwsStage.MANAGEMENT}",
+    id=f"Sso-{AwsStage.MANAGEMENT}",
     env=cdk.Environment(
         account=AwsAccountId.MANAGEMENT, region=AwsRegion.US_EAST_1
     ),

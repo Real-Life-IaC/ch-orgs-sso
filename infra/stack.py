@@ -1,7 +1,6 @@
 import aws_cdk as cdk
 
 from constructs import Construct
-from constructs_package.constants import AwsStage
 from infra.constructs.b2.sso_assignments import B2SsoAssignments
 
 

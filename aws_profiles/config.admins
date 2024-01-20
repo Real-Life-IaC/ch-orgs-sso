@@ -1,0 +1,36 @@
+[default]
+sso_start_url=https://sionek.awsapps.com/start
+sso_region=us-east-1
+region = us-east-1
+
+
+[profile management_admin]
+sso_account_id = 267631547124
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = Administrator
+region = us-east-1
+
+
+[profile production_admin]
+sso_account_id = 730335548799
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = Administrator
+region = us-east-1
+
+
+[profile sandbox_admin]
+sso_account_id = 637423243766
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = Administrator
+region = us-east-1
+
+
+[profile staging_admin]
+sso_account_id = 905418189086
+sso_start_url = https://sionek.awsapps.com/start
+sso_region = us-east-1
+sso_role_name = Administrator
+region = us-east-1
