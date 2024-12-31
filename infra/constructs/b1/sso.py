@@ -21,9 +21,7 @@ class B1AdministratorAccess(PermissionSet):
             id=id,
             sso_instance=sso_instance,
             managed_policies=[
-                iam.ManagedPolicy.from_aws_managed_policy_name(
-                    "AdministratorAccess"
-                ),
+                iam.ManagedPolicy.from_aws_managed_policy_name("AdministratorAccess"),
             ],
             session_duration=SessionDuration.ONE_HOUR,
         )
@@ -44,9 +42,7 @@ class B1ReadOnlyAccess(PermissionSet):
             id=id,
             sso_instance=sso_instance,
             managed_policies=[
-                iam.ManagedPolicy.from_aws_managed_policy_name(
-                    "ReadOnlyAccess"
-                ),
+                iam.ManagedPolicy.from_aws_managed_policy_name("ReadOnlyAccess"),
                 iam.ManagedPolicy.from_aws_managed_policy_name(
                     "AWSBillingReadOnlyAccess"
                 ),
@@ -73,9 +69,7 @@ class B1PowerUserAccess(PermissionSet):
             id=id,
             sso_instance=sso_instance,
             managed_policies=[
-                iam.ManagedPolicy.from_aws_managed_policy_name(
-                    "PowerUserAccess"
-                ),
+                iam.ManagedPolicy.from_aws_managed_policy_name("PowerUserAccess"),
             ],
             session_duration=SessionDuration.TWO_HOURS,
         )
@@ -95,9 +89,7 @@ class B1BillingAccess(PermissionSet):
             id=id,
             sso_instance=sso_instance,
             managed_policies=[
-                iam.ManagedPolicy.from_aws_managed_policy_name(
-                    "job-function/Billing"
-                ),
+                iam.ManagedPolicy.from_aws_managed_policy_name("job-function/Billing"),
             ],
             session_duration=SessionDuration.ONE_HOUR,
         )

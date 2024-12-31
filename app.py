@@ -3,17 +3,15 @@ import aws_cdk as cdk
 from constructs_package.constants import AwsAccountId
 from constructs_package.constants import AwsRegion
 from constructs_package.constants import AwsStage
-from infra.stack import SsoStack
+from infra.stack import OrgsSsoStack
 
 
 app = cdk.App()
 
-SsoStack(
+OrgsSsoStack(
     scope=app,
-    id=f"Sso-{AwsStage.MANAGEMENT}",
-    env=cdk.Environment(
-        account=AwsAccountId.MANAGEMENT, region=AwsRegion.US_EAST_1
-    ),
+    id=f"OrgsSso-{AwsStage.MANAGEMENT}",
+    env=cdk.Environment(account=AwsAccountId.MANAGEMENT, region=AwsRegion.US_EAST_1),
 )
 
 app.synth()

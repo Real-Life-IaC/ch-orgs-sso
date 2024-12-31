@@ -1,10 +1,10 @@
 from aws_cdk import aws_iam as iam
 from constructs import Construct
-from constructs_package.constants import AwsAccountId
 from infra.constructs.b1.sso import B1AdministratorAccess
 from infra.constructs.b1.sso import B1BillingAccess
 from infra.constructs.b1.sso import B1PowerUserAccess
 from infra.constructs.b1.sso import B1ReadOnlyAccess
+from infra.constructs.b2.organization import B2Organization
 from infra.constructs.l2.sso import AccountTarget
 from infra.constructs.l2.sso import GroupPrincipal
 from infra.constructs.l2.sso import SsoInstance
@@ -14,11 +14,6 @@ from infra.constructs.l2.sso import SsoInstance
 sso_instance = SsoInstance(
     "arn:aws:sso:::instance/ssoins-7223396617db918e",
 )
-
-production = AccountTarget(AwsAccountId.PRODUCTION)
-staging = AccountTarget(AwsAccountId.STAGING)
-sandbox = AccountTarget(AwsAccountId.SANDBOX)
-management = AccountTarget(AwsAccountId.MANAGEMENT)
 
 # We have to create groups in the console and paste the group IDs here
 # It's not possible to create groups with CDK or Cloudformation
@@ -34,10 +29,21 @@ finance_group = GroupPrincipal(
 
 
 class B2SsoAssignments(Construct):
-    """Cloudfront Firewall"""
+    """SSo Assignments"""
 
-    def __init__(self, scope: Construct, id: str) -> None:
+    def __init__(
+        self,
+        scope: Construct,
+        id: str,
+        organization: B2Organization,
+    ) -> None:
         super().__init__(scope, id)
+
+        # Get the accounts from the organization
+        production_target = AccountTarget(organization.prod_account.account_id)
+        staging_target = AccountTarget(organization.staging_account.account_id)
+        sandbox_target = AccountTarget(organization.sandbox_account.account_id)
+        management_target = AccountTarget(organization.organization.account_id)
 
         # Read Only Permissions
         read_only = B1ReadOnlyAccess(
@@ -56,7 +62,11 @@ class B2SsoAssignments(Construct):
         )
         read_only.create_assignment(
             principal=engineers_group,
-            targets=[production, staging, sandbox],
+            targets=[
+                production_target,
+                staging_target,
+                sandbox_target,
+            ],
         )
 
         # Power User Permissions
@@ -67,7 +77,7 @@ class B2SsoAssignments(Construct):
         )
         power_user.create_assignment(
             principal=engineers_group,
-            targets=[sandbox],
+            targets=[sandbox_target],
         )
 
         # Administrator Permissions
@@ -79,10 +89,10 @@ class B2SsoAssignments(Construct):
         administrator.create_assignment(
             principal=administrators_group,
             targets=[
-                production,
-                staging,
-                sandbox,
-                management,
+                production_target,
+                staging_target,
+                sandbox_target,
+                management_target,
             ],
         )
 
@@ -94,5 +104,5 @@ class B2SsoAssignments(Construct):
         )
         billing.create_assignment(
             principal=finance_group,
-            targets=[management],
+            targets=[management_target],
         )

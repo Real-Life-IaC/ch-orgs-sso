@@ -34,9 +34,7 @@ class TargetType(StrEnum):
 class Principal:
     """SSO Principal"""
 
-    def __init__(
-        self, principal_type: PrincipalType, principal_id: str
-    ) -> None:
+    def __init__(self, principal_type: PrincipalType, principal_id: str) -> None:
         self.principal_type = principal_type
         self.principal_id = principal_id
 
@@ -105,9 +103,7 @@ class PermissionSet(sso.CfnPermissionSet):
             id=id,
             name=id,
             instance_arn=self.sso_instance.sso_instance_arn,
-            managed_policies=[
-                policy.managed_policy_arn for policy in managed_policies
-            ],
+            managed_policies=[policy.managed_policy_arn for policy in managed_policies],
             inline_policy=inline_policy,
             session_duration=session_duration,
         )
@@ -124,10 +120,10 @@ class PermissionSet(sso.CfnPermissionSet):
     ) -> None:
         """Create assignments for the permission set"""
 
-        for target in targets:
+        for idx, target in enumerate(targets):
             Assignment(
                 scope=self,
-                id=f"{principal.principal_id[:6]}Target{target.target_id[:6]}",
+                id=f"Target{idx}",
                 sso_instance=self.sso_instance,
                 permission_set=self,
                 principal=principal,
